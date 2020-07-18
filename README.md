@@ -49,10 +49,10 @@ https://chattalk-client.eu-gb.cf.appdomain.cloud/
 # Link to publicly accessible GitHub repository-
 https://github.com/chsubhasis/CFC2020_stud-E.git
 
-# Link to a three-minute demo video-
+# Link to a demo video-
 < TODO >
 
-# Solution roadmap-
+# Solution Roadmap-
 Refer to the solution architecture diagram to gauge the landscape of the current application. As part of this prototype development, below features are NOT implemented in this minimum viable product (MVP), and here is a plan to implement these feature. We assume a dedicated team of 4 (1 Team lead + 3 developers + 1 Tester) will be focussing on this to meet the timeline.
 
 <table border="1">
@@ -94,7 +94,7 @@ Refer to the solution architecture diagram to gauge the landscape of the current
     </tr>
 </table>
 
-# Email addresses-
+# Email Addresses-
 - Subhasis Chakraborty – Subhasis.Chakraborty@Cognizant.com (Team Leader)
 - Sankha Biswas – Sankha.Biswas@cognizant.com 
 - Arijita Dey – Arijita.Dey@cognizant.com 
