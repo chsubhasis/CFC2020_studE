@@ -41,9 +41,58 @@ The solution is completely developed based on IBM Cloud. Below services are bein
 -	IBM API Gateway and FaaS (function as a service)
 
 # Overall Solution Architecture-
+<img src="Solution_Architecture.jpg"></img>
 
 # Solution URL-
 https://chattalk-client.eu-gb.cf.appdomain.cloud/
+
+# Link to publicly accessible GitHub repository-
+https://github.com/chsubhasis/CFC2020_stud-E.git
+
+# Link to a three-minute demo video-
+< TODO >
+
+# Solution roadmap-
+Refer to the solution architecture diagram to gauge the landscape of the current application. As part of this prototype development, below features are NOT implemented in this minimum viable product (MVP), and here is a plan to implement these feature. We assume a dedicated team of 4 (1 Team lead + 3 developers + 1 Tester) will be focussing on this to meet the timeline.
+
+<table border="1">
+    <tr>
+        <td><b>Action Item</b></td>
+        <td><b>Expected Timeline</b></td>
+    </tr>
+    <tr>
+        <td>Upgrade the IBM Cloud account from Lite to Standard</td>
+        <td>August 2020</td>
+    </tr>
+    <tr>
+        <td>Upgrade the Twilio account to a licensed version. Currently we are using free version that supports only 1 phone number</td>
+        <td>August 2020</td>
+    </tr>
+    <tr>
+        <td>User role Authorization</td>
+        <td>September 2020</td>
+    </tr>
+    <tr>
+        <td>Security Implementation</td>
+        <td>October 2020</td>
+    </tr>
+    <tr>
+        <td>Join the virtual classroom on call; in case of unavailability of Internet</td>
+        <td>October 2020</td>
+    </tr>
+    <tr>
+        <td>Train the Visual Recognition service with pictures of students</td>
+        <td>September 2020</td>
+    </tr>
+    <tr>
+        <td>Train the Discovery Service with text book pdfs / images</td>
+        <td>September 2020</td>
+    </tr>
+    <tr>
+        <td>Integration Testing and Deployment</td>
+        <td>December 2020</td>
+    </tr>
+</table>
 
 # Email addresses-
 - Subhasis Chakraborty – Subhasis.Chakraborty@Cognizant.com (Team Leader)
