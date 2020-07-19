@@ -48,7 +48,7 @@ Corresponding Output:
 This service doesnt return core JSON object. So, you may face issues while viewing the output as JSON. Application parse the object properly for retriving the sentiments.
 
 <b> Notification Service </b><br>
-REST API: https://0f675bd4.eu-gb.apigw.appdomain.cloud/notification/sendsms
+REST API: https://0f675bd4.eu-gb.apigw.appdomain.cloud/notification/sendsms<br>
 Sample Input:
 {
   "mydata": "This is a Test SMS",
