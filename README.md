@@ -47,7 +47,7 @@ The solution is completely developed based on IBM Cloud. Below services are bein
 https://chattalk-client.eu-gb.cf.appdomain.cloud/
 
 # Link to publicly accessible GitHub repository-
-https://github.com/chsubhasis/CFC2020_stud-E.git
+https://github.com/chsubhasis/CFC2020_studE.git
 
 # Link to a demo video-
 < TODO >
