@@ -5,6 +5,7 @@
 
 1) Create IBM Watson services (Natural Language Understaning, Language Translator, Discovery, Visual Recognition). Note down the API KEY, Service URL and versions.
 2) Install IBM Cloud CLI in your system.
+3) Install Python SDK for IBM Watson.
 
 
 # How to use these Services?
