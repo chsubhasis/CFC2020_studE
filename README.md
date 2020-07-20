@@ -35,9 +35,8 @@ The solution is completely developed based on IBM Cloud. Below services are bein
 -	IBM Watson Natural language understanding service used in Suggestion/Complain box
 -	IBM Watson Language Translator Service
 -	IBM Watson Discovery Service
--	IBM Watson Assistant
--	IBM Watson Visual Recognition Service
--	IBM Watson Studio
+-	IBM Watson Assistant for Chatbot implementation
+-	IBM Watson Studio and Visual Recognition Service
 -	IBM API Gateway and FaaS (function as a service)
 
 # Overall Solution Architecture-
