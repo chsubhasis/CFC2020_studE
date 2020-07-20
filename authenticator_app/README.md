@@ -1,4 +1,4 @@
-﻿Step 1: Before you begin
+# Step 1: Before you begin
 You'll need the following:-
 
 1. Create Free/Lite version of the IBM Cloud account & Visual Recognition Service and create a Custom Classifier Model for Mood Analysis
@@ -7,8 +7,7 @@ You'll need the following:-
 3. Git:- Install it from https://git-scm.com/downloads
 4. Install .NET Core SDK 3.1 from the .NET Core downloads website at https://dotnet.microsoft.com/download
 
-
-Step 2: Run the app locally
+# Step 2: Run the app locally
 1. On the command line, change the directory to where the sample app is located.
 	cd get-started-aspnet-core/src/GetStartedDotnet
 
@@ -18,10 +17,10 @@ Step 2: Run the app locally
 
 3. View your app at: http://localhost:5000/.
 
-Step 3:Prepare the app for deployment
+# Step 3:Prepare the app for deployment
 1. Open the manifest.yml file, and change the name from GetStartedDotnet to your app name, app_name.
 
-Step 4: Deploy the app by using the following IBM Cloud CLI commands from the command prompt-
+# Step 4: Deploy the app by using the following IBM Cloud CLI commands from the command prompt-
 1. IBMCloud login
 2. IBMCloud target --cf
 3. IBMCloud cf push ethicalhackersvisualrecognitionapp
