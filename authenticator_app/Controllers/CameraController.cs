@@ -73,10 +73,10 @@ namespace nsVisualRecognitionAuthenticationApp.Controllers
                                 StoreInFolder(file, filepath);
                                 //Invoke IBM Watson Visual Recognition Service to Validate the Image is a valid student
                                 IamAuthenticator authenticator = new IamAuthenticator(
-    apikey: "vGmgjjlH6pmHMKIbakm_CI7yeAQzFRvuxbZNUPH3BOf5"
+    apikey: "Mf5ZRh914NAF9sl9z8aAxxKjK74M5gqBbUcRNHt-wRo6"
     );
                                 VisualRecognitionService visualRecognition = new VisualRecognitionService("2018-03-19", authenticator);
-                                visualRecognition.SetServiceUrl("https://api.us-south.visual-recognition.watson.cloud.ibm.com/instances/d8433848-a95d-42ab-b6e8-c756f9c49349");
+                                visualRecognition.SetServiceUrl("https://api.us-south.visual-recognition.watson.cloud.ibm.com/instances/18ca2b4d-0fc9-444b-9c84-eb3034160050");
                                 visualRecognition.WithHeader("X-Watson-Learning-Opt-Out", "true");
                                 visualRecognition.DisableSslVerification(true);
                                 using (FileStream fs = System.IO.File.OpenRead(filepath))
@@ -88,7 +88,7 @@ namespace nsVisualRecognitionAuthenticationApp.Controllers
                                             imagesFile: ms,
                                             imagesFilename: newFileName,
                                             threshold: 0.6f,
-                                            classifierIds: new List<string>() { "DefaultCustomModel_1728885394" }
+                                            classifierIds: new List<string>() { "Authenticator_Model_531107688" }
                                             );
                                     }
                                 }
