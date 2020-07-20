@@ -1,4 +1,4 @@
-﻿Step 1: Before you begin
+# Step 1: Before you begin
 You'll need the following:-
 
 1. Create Free/Lite version of the IBM Cloud account & Visual Recognition Service and create a Custom Classifier Model for Mood Analysis
