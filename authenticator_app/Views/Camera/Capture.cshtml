@@ -1,0 +1,152 @@
+﻿@model DemoWebCam.Models.VisualRecognitionModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>VisualRecognition Authentication</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <style type="text/css">
+
+        body {
+            font-family: Helvetica, sans-serif;
+        }
+
+        h2, h3 {
+            margin-top: 0;
+        }
+
+        form {
+            margin-top: 15px;
+        }
+
+            form > input {
+                margin-right: 15px;
+            }
+
+
+        #buttonhide {
+            background: transparent;
+            border: none !important;
+            font-size: 0;
+        }
+    </style>
+
+</head>
+<body class="container">
+    <br />
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">Camera</div>
+            <div class="panel-body">
+                <div id="my_camera"></div>
+                <!-- A button for taking snaps -->
+                <form>
+                    <input type="button" class="btn btn-success" value="Admit Me" onClick="take_snapshot()">
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">Captured Photo</div>
+            <div class="panel-body">
+                <div id="results">Your captured image will appear here...</div>
+                <br />
+                <div id="visualrecognitiondev">
+                </div>
+            </div>
+            <br />
+            <br />
+        </div>
+    </div>
+
+    <div class="col-md-2">    </div>
+    <div id="myModal" class="modal fade ada" role="dialog" aria-label="Success dialog" tabindex="0">
+        <div class="modal-content">
+            <div class="modal-header ada">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close success dialog">x</button>
+                @*<button type="button" class="close" data-dismiss="modal">×</button>*@
+                <h2 id="vrresulttitle" class="modal-title"><strong tabindex="0">Results!</strong></h2>
+            </div>
+            <div class="modal-body ada" role="complementary">
+                <p>
+                    <strong>
+                        <div id="vrresult"></div>
+                        @if ((Model != null) && (Model.identifiedname != null))
+                        {
+                            @($"{Model.identifiedname}")
+                        }
+
+                    </strong>
+                </p>
+                <button type="button" class="btn btn-primary ada" data-dismiss="modal" aria-label="OK" tabindex="0">OK</button>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+
+    </div>
+    <!-- First, include the Webcam.js JavaScript Library -->
+    <script src="~/webcamjs/webcam.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <!-- BS JavaScript -->
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- Configure a few settings and attach camera -->
+    <script language="JavaScript">
+        Webcam.set({
+            width: 320,
+            height: 240,
+            image_format: 'jpeg',
+            jpeg_quality: 90
+        });
+        Webcam.attach('#my_camera');
+    </script>
+
+    <!-- Code to handle taking the snapshot and displaying it locally -->
+    <script language="JavaScript">
+        window.onload = function () {
+            $("#myModal").modal('hide');
+
+        };
+        function take_snapshot() {
+
+            if (Webcam != null) {
+                // take snapshot and get image data
+                Webcam.snap(function (data_uri) {
+                    // display results in page
+                    document.getElementById('results').innerHTML =
+                        '<img src="' +
+                        data_uri +
+                        '"/>';
+
+                    Webcam.upload(data_uri,
+                        '/Camera/Capture',
+                        function (code, text) {
+                            $("#myModal").modal('show');
+                            document.getElementById('vrresult').innerHTML = code + ": " + text;
+                            if (code != "200") {
+                                document.getElementById('vrresulttitle').innerHTML = "FAILURE!";
+                                document.getElementById('vrresult').innerHTML = "The Visual Recognition Service is unable to Recognize you. Please use the 'GUEST USERS' option to join the class room";
+                            }
+                            else
+                                document.getElementById('vrresulttitle').innerHTML = "SUCCESS!";
+
+                            window.parent.postMessage({ v1: code, v2: text }, "*")
+                        });
+                });
+            }
+        }
+
+    </script>
+
+</body>
+</html>
+
