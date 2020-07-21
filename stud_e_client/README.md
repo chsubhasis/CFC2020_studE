@@ -12,7 +12,6 @@ Use the following command to install Angular CLI
 [`npm install -g @angular/cli`]
 To check Node and Angular CLI version, use `ng --version` command.
 
-
 ## Clone this project from GIT
 
 `git clone (copy git url and paste)`
@@ -24,10 +23,10 @@ To check Node and Angular CLI version, use `ng --version` command.
 Run `ng serve` for a local server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Deployment steps
-	Build your angular project into production mode.
+- Build your angular project into production mode.
 `ng build –prod`
-	Go to your build folder and create two files. 1. `manifest.yml` 2. `Staticfile.txt`.
-	Open `manifest.yml`. Paste below piece of code and save.
+- Go to your build folder and create two files. 1. `manifest.yml` 2. `Staticfile.txt`.
+- Open `manifest.yml`. Paste below piece of code and save.
 
 `---`
 `applications`
@@ -37,15 +36,14 @@ Run `ng serve` for a local server. Navigate to `http://localhost:4200/`. The app
     `instances: 1`
     `buildpack: staticfile_buildpack`
 
-	Keep `Staticfile.txt` as a blank file.
-	Open command prompt in administrative mode. [Make sure `IBM cli` is installed in your system].
-	Go to desired build path from cli.
-	Run `ibmcloud login`. It will ask for your IBM username and password. Type your details and press enter button.
-	Run `ibmcloud target --cf` and press enter.
-	Run `ibmcloud app push your-app-name` and press enter.
-	Login into your IBM cloud account and go to cloud foundry application. You will find your app url from there [`visit app url`].
-	Check your application in browser.
-
+- Keep `Staticfile.txt` as a blank file.
+- Open command prompt in administrative mode. [Make sure `IBM cli` is installed in your system].
+- Go to desired build path from cli.
+- Run `ibmcloud login`. It will ask for your IBM username and password. Type your details and press enter button.
+- Run `ibmcloud target --cf` and press enter.
+- Run `ibmcloud app push your-app-name` and press enter.
+- Login into your IBM cloud account and go to cloud foundry application. You will find your app url from there [`visit app url`].
+- Check your application in browser.
 
 ## Code scaffolding
 
