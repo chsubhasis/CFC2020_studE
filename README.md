@@ -1,5 +1,5 @@
 # CFC2020 stud-E
- Remote education platform for CFC202. developed by team Ethical Hackers. Solution name is <b>stud-E</b>.
+ Remote education platform for CFC202. Developed by team Ethical Hackers. Solution name is <b>stud-E</b>.
 
 # Submission Track-
 Theme: COVID-19
