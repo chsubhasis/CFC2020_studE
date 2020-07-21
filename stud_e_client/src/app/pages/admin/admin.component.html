@@ -1,0 +1,221 @@
+<section>
+    <div class="d-flex main-block">
+        <!-------------------------------- Filter Panel Section -------------------->
+        <div class="sidepanel p-2" *ngIf="selectedTab === 'feedback-list'">
+            <div class="card">
+                <div class="card-header sidepanel-header">
+                    Filters
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let filter of filterOptions; let baseIndex = index;">
+                        <ng-container>
+                            <strong>{{filter.label}}</strong>
+                            <ng-container *ngIf="filter.subFilter.length">
+                                <div class="ml-2 font-size-15px" *ngFor="let categoryLabel1 of filter.subFilter">
+                                    <input type="checkbox" class="mr-1 cursor-pointer"
+                                        [(ngModel)]="categoryLabel1.isChecked" name="input"
+                                        (ngModelChange)="changeFilter()" *ngIf="!categoryLabel1.subFilter.length">
+                                    <span class="text-capitalize">{{categoryLabel1.label}}</span>
+
+                                    <!-- Second level -->
+                                    <ng-container *ngIf="categoryLabel1.subFilter.length">
+                                        <div class="ml-2" *ngFor="let categoryLabel2 of categoryLabel1.subFilter">
+                                            <input type="checkbox" class="mr-1 cursor-pointer"
+                                                [(ngModel)]="categoryLabel2.isChecked" name="input"
+                                                (ngModelChange)="changeFilter()">
+                                            <span class="text-capitalize">{{categoryLabel2.label}}</span>
+                                        </div>
+                                    </ng-container>
+
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                    <div class="text-center" (click)="clearFilter()">
+                        <button type="button" class="btn btn-link">See All</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-------------------------------- Main Section -------------------->
+        <div class="flex-1">
+            <!-------------------------------- Statistics Section -------------------->
+            <div class="card m-2" *ngIf="selectedTab === 'dashboard'">
+                <div class="card-header card-header-statistics">
+                    Sentiment and Emotion Analysis
+                </div>
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="card flex-1 mr-2">
+                            <div class="card-header statistics-individual-card-header text-center">
+                                Overall Sentiment Analysis
+                            </div>
+                            <div class="card-body d-flex">
+                                <div class="sentiment-legend font-size-15px">
+                                    <div class="mt-3 cursor-pointer"
+                                        [ngStyle]="{'color': getSentimentColor('positive')}"
+                                        [ngClass]="{'filter-out': selectedSentiment.length && selectedSentiment !== 'positive', 'filter-in': selectedSentiment === 'positive'}"
+                                        (click)="changeSentimentFilter('positive')">
+                                        <div class="lengend-box"
+                                            [ngStyle]="{'background-color': getSentimentColor('positive')}"></div>
+                                        Positive
+                                        <em class="fa fa-smile-o align-middle font-2rem"></em>
+                                        - {{originalSentimentData[0]}}%
+                                    </div>
+                                    <div class="mt-3 cursor-pointer" [ngStyle]="{'color': getSentimentColor('neutral')}"
+                                        [ngClass]="{'filter-out': selectedSentiment.length && selectedSentiment !== 'neutral', 'filter-in': selectedSentiment === 'neutral'}"
+                                        (click)="changeSentimentFilter('neutral')">
+                                        <div class="lengend-box"
+                                            [ngStyle]="{'background-color': getSentimentColor('neutral')}"></div>
+                                        Neutral
+                                        <em class="fa fa-meh-o align-middle font-2rem"></em>
+                                        - {{originalSentimentData[1]}}%
+                                    </div>
+                                    <div class="mt-3 cursor-pointer"
+                                        [ngStyle]="{'color': getSentimentColor('negative')}"
+                                        [ngClass]="{'filter-out': selectedSentiment.length && selectedSentiment !== 'negative', 'filter-in': selectedSentiment === 'negative'}"
+                                        (click)="changeSentimentFilter('negative')">
+                                        <div class="lengend-box"
+                                            [ngStyle]="{'background-color': getSentimentColor('negative')}"></div>
+                                        Negative
+                                        <em class="fa fa-frown-o align-middle font-2rem"></em>
+                                        - {{originalSentimentData[2]}}%
+                                    </div>
+
+                                    <div class="mt-3 text-secondary" >
+                                        <button type="button" class="btn btn-light clear cursor-pointer" (click)="clearFilter()">Clear Filter</button>
+                                    </div>
+                                </div>
+                                <div class="text-center flex-1">
+                                    <canvas baseChart class="chart-width" [data]="originalSentimentData"
+                                        [labels]="sentimentLabels" [colors]="sentimentColors" [chartType]="pieChartType"
+                                        [options]="statisticsChartOptions" [plugins]="sentimentPlugins"
+                                        [legend]="sentimentLegend">
+                                    </canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card flex-1 text-center">
+                            <div class="card-header statistics-individual-card-header">
+                                {{showEmotionAnalysisName()}}
+                            </div>
+                            <div class="card-body d-flex">
+                                <div class="font-size-15px sentiment-legend">
+                                    <div class="mt-2" *ngFor="let emotionKey of emontionList; let emotionIndex = index;"
+                                        [ngStyle]="{color : emotiontColors[0].backgroundColor[emotionIndex]}">
+                                        <div class="lengend-box mr-1"
+                                            [ngStyle]="{'background-color' : emotiontColors[0].backgroundColor[emotionIndex]}">
+                                        </div>
+                                        <span class="text-capitalize text-center">{{emotionKey}}: </span>
+                                        <span class="text-center">
+                                            {{emotiontData[emotionIndex]}}%
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="text-center flex-1">
+                                    <canvas baseChart class="chart-width" [data]="emotiontData"
+                                        [labels]="emotiontLabels" [colors]="emotiontColors" [chartType]="pieChartType"
+                                        [options]="sentimentChartOptions" [plugins]="emotiontPlugins"
+                                        [legend]="emotiontLegend">
+                                    </canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-------------------------------- Feedback Section -------------------->
+            <div class="card m-2" *ngIf="selectedTab === 'feedback-list' || selectedSentiment">
+                <div class="card-header card-header-feedback">
+                    {{showFeedbackListName()}}
+                </div>
+                <div class="card-body">
+                    <accordion isAnimated="true" closeOthers="true">
+                        <accordion-group *ngFor="let item of list" panelClass="complaint">
+                            <h6 class="m-0 d-flex" accordion-heading>
+                                <div class="flex-1">
+                                    Feedback :
+                                    <strong> {{item.analyzed_text}}</strong>
+                                </div>
+                                <div class="sidebar-opened" *ngIf="selectedTab === 'feedback-list'">
+                                    <em class="fa fa-smile-o text-success align-middle font-2rem"
+                                        *ngIf="item.sentiment.document.label === SentimentLabel.Positive"></em>
+                                    <em class="fa fa-meh-o text-warning align-middle font-2rem"
+                                        *ngIf="item.sentiment.document.label === SentimentLabel.Neutral"></em>
+                                    <em class="fa fa-frown-o text-danger align-middle font-2rem"
+                                        *ngIf="item.sentiment.document.label === SentimentLabel.Negative"></em>
+                                </div>
+                            </h6>
+
+                            <div class="d-flex">
+                                <div class="flex-1">
+                                    <div>
+                                        Sentiment :
+                                        <span class="text-capitalize"
+                                            [ngStyle]="{'color': getSentimentColor(item.sentiment.document.label)}">
+                                            {{item.sentiment.document.label}} </span>
+                                        <em class="fa fa-smile-o align-middle font-2rem"
+                                            [ngStyle]="{'color': getSentimentColor('positive')}"
+                                            *ngIf="item.sentiment.document.label === SentimentLabel.Positive"></em>
+                                        <em class="fa fa-meh-o align-middle font-2rem"
+                                            [ngStyle]="{'color': getSentimentColor('neutral')}"
+                                            *ngIf="item.sentiment.document.label === SentimentLabel.Neutral"></em>
+                                        <em class="fa fa-frown-o align-middle font-2rem"
+                                            [ngStyle]="{'color': getSentimentColor('negative')}"
+                                            *ngIf="item.sentiment.document.label === SentimentLabel.Negative"></em>
+                                    </div>
+                                    <div>
+                                        Emotion :
+                                        <span class="text-capitalize"
+                                            [ngStyle]="{'color': getEmotionColor(item.emotion.maximumEmotion)}">
+                                            {{item.emotion.maximumEmotion}} </span>
+                                    </div>
+                                    <div>
+                                        <div class="d-inline-block align-top"> Important Keyword(s) : &nbsp;</div>
+                                        <div class="d-inline-block">
+                                            <strong *ngFor="let keyword of item.keywords"> {{keyword.text}}, </strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <div>
+                                        <div class="d-inline-block align-top"> Overall Emotions : </div>
+                                        <div class="d-inline-block text-center complaint-chart-container">
+                                            <canvas baseChart class="chart-width"
+                                                [data]="item.emotion.emotionDataForChart" [labels]="emotiontLabels"
+                                                [colors]="emotiontColors" [chartType]="pieChartType"
+                                                [options]="complaintEmotiontOptions" [plugins]="emotiontPlugins"
+                                                [legend]="complaintEmotiontLegend">
+                                            </canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </accordion-group>
+                    </accordion>
+                </div>
+            </div>
+
+
+            <!-------------------------------- Sentiment Analysis Section -------------------->            
+            <app-sentiment-analysis *ngIf="selectedTab === 'dashboard'" ></app-sentiment-analysis>           
+            
+
+            <!-------------------------------- Footer Button Section -------------------->
+            <div class="text-left mb-3">
+                <button class="btn btn-white ml-3" title="Go To Home" (click)="goToHome()">Home</button>
+
+                <button class="btn btn-white ml-3" title="Go To Feedback List" *ngIf="selectedTab === 'dashboard'"
+                    (click)="changeTab('feedback-list')">Feedback List</button>
+
+                <button class="btn btn-white ml-3" title="Go To Dashboard" *ngIf="selectedTab === 'feedback-list'"
+                    (click)="changeTab('dashboard')">Dashboard</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-------------------------------- Loader Section -------------------->
+<app-loader [isLoading]="isLoading && isSentimentDataFetched"></app-loader>

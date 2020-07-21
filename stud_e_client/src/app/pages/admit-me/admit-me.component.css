@@ -1,0 +1,23 @@
+.modal-lg {
+  max-width: 98% !important;
+}
+
+.container-row {
+  height: 100%;
+}
+
+.home-banner-area {
+  background-image: url(../../../assets/images/home-banner-bg.png);
+  background-size: cover;
+  background-position: center center;
+  max-height: 1200px;
+}
+.feature-area .container-fluid {
+  padding-left: 50px;
+}
+ 
+.feature-item {
+  margin: 30px 0px;
+  border-right: 1px solid rgba(130, 139, 178, 0.2);
+  padding-right: 20px;
+}

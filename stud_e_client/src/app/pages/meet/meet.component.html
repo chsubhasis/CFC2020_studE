@@ -1,0 +1,171 @@
+<!-- If user has not joined the room -->
+<section class="home-banner-area" *ngIf="!hasJoined">
+    <div class="container">
+        <div class="row justify-content-center fullscreen align-items-center" style="height: 529px;">
+            <div class="col-lg-5 col-md-8 home-banner-left">
+                <h1 class="text-white">
+                    Welcome {{userName}}
+                </h1>
+                <p class="mx-auto text-white  mt-20 mb-40">
+                    <input type="text" class="form-control" aria-describedby="emailHelp" [(ngModel)]="roomName">
+                </p>
+            </div>
+
+            <div class="offset-lg-2 col-lg-5 col-md-12 home-banner-right">
+                <img class="img-fluid" src="../../../assets/images/edu_ilastration.png" alt="">
+            </div>
+
+            <div class="col-lg-12 col-md-12">
+                <button class="btn btn-white mr-3" (click)="joinRoom()" title="Join Room">Join Room</button>
+                <button class="btn btn-white mr-3" (click)="goToAdmin()" title="Go To Reporting and Analytics">Reporting and Analytics</button>
+                <button class="btn btn-white mr-3" (click)="openComplaintBox()" title="Share Feedback">Share
+                    Feedback</button>
+                <button class="btn btn-white mr-3" (click)="sendReminderToStudent()"
+                    title="Send Message to Student">Send Message</button>
+                <button class="btn btn-white" title="Go Back to Home Page" routerLink="/">Go Back</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- If user has joined -->
+<section class="bg-dark" *ngIf="hasJoined">
+    <div class="container">
+        <div class="row justify-content-center fullscreen align-items-center" style="height: 529px;">
+            <div class="col-lg-6 col-md-6 local-video">
+                <!-- Teacher screen -->
+                <div class="flex-1 teacher-screen local-video-container v-container" #localVideoContainer></div>
+                
+            </div>
+
+            <div class="col-lg-6 col-md-6 remote-video">
+                <!-- Students screen-->
+                <div class="flex-1 remote-video-container v-container d-flex flex-wrap" #remoteVideoContainer></div>
+            </div>
+        </div>
+        <!-- Closed Caption Container -->
+        <div class="cc-drag-bounds" #dragBounds>
+            <div class="cc-resize-container" ngResizable rzHandles="n,s,e,w,se,sw" ngDraggable [handle]="dragHandle"
+                [bounds]="dragBounds" [inBounds]="true" [rzMinWidth]="300" [rzMinHeight]="200"
+                [preventDefaultEvent]="true" *ngIf="isCCShowing">
+                <div #dragHandle class="cc-drag-handle position-relative">
+                    <h6 class="m-0 p-2"> Closed Caption </h6>
+                    <em class="fa fa-arrows drag-cc"></em>
+                    <em class="fa fa-times close-cc" (click)="isCCShowing = false"></em>
+                </div>
+                <div class="d-flex position-relative pb-2">
+                    <div class="flex-1 text-center">
+                        <div class="text-center">Speech Language</div>
+                        <select class='d-inline language-dropdown btn-blue' [(ngModel)]="sourceLanguageKey"
+                            (change)="changeLanguage()">
+                            <option [value]="language.key" *ngFor="let language of languageList | keyvalue">
+                                {{language.value.label}}</option>
+                        </select>
+                    </div>
+                    <div class="flex-1 ml-2 text-center">
+                        <div class="text-center">Caption Language</div>
+                        <select class='d-inline language-dropdown btn-blue' [(ngModel)]="targetLanguageKey"
+                            (change)="changeLanguage()">
+                            <option [value]="language.key" *ngFor="let language of languageList | keyvalue">
+                                {{language.value.label}}</option>
+                        </select>
+                    </div>
+                    <div class="cc-arrow-container">
+                        <em class="fa fa-long-arrow-right"></em>
+                    </div>
+                </div>
+                <div class="m-2 cc-text-container">
+                    <ng-container *ngFor="let text of convertedText">{{text}}. </ng-container>
+                    <button type="button" class="btn btn-light clear-btn" (click)="convertedText = [];">Clear
+                        Text</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating button -->
+        <!-- <a class="float text-white" id="menu-share" style="background-color: #ffab00;">
+            <em class="fa fa-cogs my-float"></em>
+        </a> -->
+        <ul class="text-white">
+            <li>
+                <a (click)="goToSlack()" title="Go to Slack" style="background-color: #4c154d;">
+                    <img src="../assets/images/slack.png" alt="Slack" class="slack-image">
+                </a>
+            </li>
+            <li>
+                <a (click)="goToAdmin()" title="Go To Reporting and Analytics" style="background-color: #08d872;">
+                    <em class="fa fa-line-chart my-float"></em>
+                </a>
+            </li>
+            <li>
+                <a (click)="openComplaintBox()" title="Share Feedback" style="background-color: #7ac4e9;">
+                    <em class="fa fa-pencil-square-o my-float"></em>
+                </a>
+            </li>
+            <li>
+                <a (click)="sendReminderToStudent()" title="Send Message to Student" style="background-color: #08d872;">
+                    <em class="fas fa-sms my-float"></em>
+                </a>
+            </li>
+            <li>
+                <a (click)="isCCShowing = true; convertedText = [];" title="Show Live Captioning"
+                    style="background-color: #0f62fe;">
+                    <em class="fas fa-align-left my-float"></em>
+                </a>
+            </li>
+            <li>
+                <a (click)="leaveRoom()" title="Leave Classroom">
+                    <em class="fas fa-phone-slash my-float"></em>
+                </a>
+            </li>
+        </ul>
+
+
+    </div>
+
+    <!----------------------------------- Question Section ----------------------->
+    <div class="question-container bg-white" *ngIf="showQuestion">
+        <div class="question-header position-relative">
+            <h5 class="p-2 m-0">Question</h5>
+            <em class="fa fa-times close-cc" *ngIf="answerStatus !== AnswerStatus.Pending"
+                (click)="closeQuestion()"></em>
+        </div>
+        <div class="question-body">
+            <ng-container *ngIf="answerStatus === AnswerStatus.Pending">
+                <h5 class="p-2 m-0">{{questionList[currentQuestionIndex].question}}</h5>
+                <div class="answer-container d-flex">
+                    <ng-container
+                        *ngFor="let answer of questionList[currentQuestionIndex].answers; let answerIndex = index;">
+                        <div class="flex-1 text-left p-2">
+                            <input type="radio" name="answerradio" class="mr-1 cursor-pointer"
+                                id="answer_{{answerIndex}}" [value]="answer" [(ngModel)]="selectedAnswer">
+                            <label class="form-check-label cursor-pointer"
+                                for="answer_{{answerIndex}}">{{answer}}</label>
+                        </div>
+                        <div class="break-flex" *ngIf="answerIndex % 2 === 1"></div>
+                    </ng-container>
+                </div>
+                <div class="p-2 text-center">
+                    <button class="btn btn-blue p-2" type="button" (click)="submit(true)">Submit</button>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="answerStatus === AnswerStatus.Right">
+                <div class="alert alert-success m-2" role="alert">
+                    You are correct!
+                </div>
+            </ng-container>
+            <ng-container *ngIf="answerStatus === AnswerStatus.Wrong">
+                <div class="alert alert-danger m-2" role="alert">
+                    You are wrong!
+                </div>
+            </ng-container>
+            <ng-container *ngIf="answerStatus === AnswerStatus.Timeout">
+                <div class="alert alert-danger m-2" role="alert">
+                    You haven't give any answer!
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</section>
+<!----------------------------------- Loader Section ----------------------->
+<app-loader [isLoading]="isLoading"></app-loader>

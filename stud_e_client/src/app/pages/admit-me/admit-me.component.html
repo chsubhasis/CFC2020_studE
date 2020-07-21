@@ -1,0 +1,47 @@
+<!-- attendance Modal -->
+<div bsModal #attendanceModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-sizes-name1" class="modal-title pull-left">Get Identified</h4>
+                <button type="button" class="close pull-right" (click)="hideModal()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <iframe width="100%" height="400px" frameBorder="0" [src]="urlSafe" allow="camera"
+                    *ngIf="urlSafe"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- attendance Modal -->
+
+<!-- Home Banner -->
+<section class="home-banner-area">
+    <div class="container">
+        <div class="row justify-content-center fullscreen align-items-center" style="height: 529px;">
+            <div class="col-lg-5 col-md-8 home-banner-left">
+                <h1 class="text-white">
+                    Take the first step <br>
+                    to learn with us
+                </h1>
+                <p class="mx-auto text-white  mt-20 mb-40">
+                    New generation of Remote Education System, powered by Artificial Intelligence and Machine Learning
+                </p>
+            </div>
+
+            <div class="offset-lg-2 col-lg-5 col-md-12 home-banner-right">
+                <img class="img-fluid" src="../../../assets/images/header-img.png" alt="">
+            </div>
+
+            <div class="col-lg-10 col-md-8">
+                <button class="btn btn-prime mr-5" (click)="admitMe()" title="For Registered Users">Registered
+                    Users</button>
+                <button class="btn btn-blue" (click)="navigateToJoinUs()" title="For Guest Users">Guest Users</button>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Home Banner -->

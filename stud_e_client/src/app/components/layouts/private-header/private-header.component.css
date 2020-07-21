@@ -1,0 +1,28 @@
+.default-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.navbar {
+  padding: 7px 25px 15px;
+}
+
+.navbar-brand {
+  display: inline-block;
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  line-height: inherit;
+  white-space: nowrap;
+  color: #ffffff;
+}
+
+img {
+  height: 34px;
+}
+
+a {
+  cursor: pointer;
+}

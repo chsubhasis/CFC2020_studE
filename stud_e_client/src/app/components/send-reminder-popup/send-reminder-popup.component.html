@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h5 class="modal-title">Send Message</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closePopup()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<!-- Modal Body-->
+<div class="modal-body">
+    <ng-container *ngIf="!showError">
+        <ng-container *ngIf="!messageSent">
+            <div class="form-group">
+                <label for="message-text" class="col-form-label">Message:</label>
+                <textarea class="form-control"  maxlength="150"  [(ngModel)]="reminderText"></textarea>
+            </div>
+        </ng-container>
+        <alert type="success" *ngIf="messageSent">
+            Your message has been sent to students.
+        </alert>
+    </ng-container>
+    <alert type="danger" *ngIf="showError">
+        Something went wrong. Please try again later.
+    </alert>
+</div>
+<!-- Modal Body-->
+
+<!-- Modal Footer-->
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="closePopup()">Close</button>
+    <button type="button" class="btn btn-primary" *ngIf="!messageSent" (click)="sendReminderMessage()" [disabled]="!reminderText.length">Send Message</button>
+</div>
+<!-- Modal Footer-->
+
+<!-- Loader -->
+<app-loader [isLoading]="isLoading"></app-loader>
+<!-- Loader -->

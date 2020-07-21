@@ -1,0 +1,103 @@
+.mb-50 {
+  margin-bottom: 100px !important;
+}
+.font-2rem {
+  font-size: 2rem;
+}
+.chart-width {
+  width: 300px;
+}
+
+.card-header-statistics,
+.card-header-feedback,
+.sidepanel-header {
+  text-align: center;
+  background-color: #d1ecf1;
+  color: #0c5460;
+  padding: 8px;
+  font-weight: 500;
+  background: linear-gradient(270deg, #7c32ff 0%, #c738d8 100%);
+  color: white;
+}
+
+
+.statistics-individual-card-header {
+  font-weight: 500;
+  padding: 8px;
+}
+.card-body {
+  padding: 0.5rem;
+}
+.font-size-15px {
+  font-size: 15px;
+}
+::ng-deep .complaint {
+  border-bottom: none;
+  font-size: 14px;
+}
+::ng-deep .complaint .panel-heading {
+  padding: 8px;
+}
+::ng-deep .complaint .panel-body {
+  padding: 5px 15px;
+}
+.complaint-chart-container {
+  width: 300px;
+}
+
+.sidepanel {
+  width: 250px;
+}
+.sidetab {
+  position: fixed;
+  left: 0;
+  width: 45px;
+  background-color: #232721;
+  color: #fff;
+  z-index: 2;
+  bottom: 0;
+  top: 50px;
+  -webkit-box-shadow: 2px 0px 2px 0px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 2px 0px 2px 0px rgba(0, 0, 0, 1);
+  box-shadow: 2px 0px 2px 0px rgba(0, 0, 0, 1);
+}
+.icon-container {
+  padding: 10px;
+  cursor: pointer;
+}
+.icon-container em {
+  font-size: 20px;
+}
+.sidebar-opened {
+  width: 150px;
+}
+.sentiment-legend {
+    width: 180px;
+    text-align: left;
+}
+.lengend-box {
+    width: 12px;
+    height: 13px;
+    display: inline-block;
+    border: 1px solid;
+}
+section {
+  background-image: url(../../../assets/images/join-us-banner.png);
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+  padding-top: 60px;
+  overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.filter-out {
+  opacity: 0.5;
+}
+.filter-in {
+  font-weight: bold;
+}
+.clear {
+  border: 1px solid #d1d0d0;
+  border-radius: 25px;
+}

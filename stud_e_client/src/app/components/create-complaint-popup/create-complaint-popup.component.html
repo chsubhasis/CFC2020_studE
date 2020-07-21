@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h5 class="modal-title">Your Feedback/Complaints</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closePopup()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <ng-container *ngIf="!showError">
+        <ng-container *ngIf="!feedbackSubmitted">
+            <div class="form-group">
+                <textarea class="form-control" [(ngModel)]="complaintText"></textarea>
+            </div>
+        </ng-container>
+        <alert type="success" *ngIf="feedbackSubmitted">
+            <strong>Thank you!</strong> We have received your message.
+        </alert>
+    </ng-container>
+    <alert type="danger" *ngIf="showError">
+        Something went wrong. Please try again later.
+    </alert>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="closePopup()">Close</button>
+    <button type="button" class="btn btn-primary" *ngIf="!feedbackSubmitted" (click)="submitFeedback()" [disabled]="!complaintText.length">Submit</button>
+</div>
+
+<app-loader [isLoading]="isLoading"></app-loader>

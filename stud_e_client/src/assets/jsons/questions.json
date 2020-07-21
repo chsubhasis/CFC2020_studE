@@ -1,0 +1,33 @@
+[
+    {
+        "className": "physics_class4_secA",
+        "question": "Which unit of measurement is used to measure energy?",
+        "answers": [
+            "Ampere",
+            "Joule",
+            "Kelvin",
+            "Watt"
+        ],
+        "rightAnswer": "Joule"
+    },
+    {
+        "className": "physics_class4_secA",
+        "question": "All forms of energy have the ability to do work.",
+        "answers": [
+            "True",
+            "False"
+        ],
+        "rightAnswer": "True"
+    },
+    {
+        "className": "physics_class4_secA",
+        "question": "What kind of energy is associated with moving objects?",
+        "answers": [
+            "Heat energy",
+            "Kinetic energy",
+            "Light energy",
+            "Potential energy"
+        ],
+        "rightAnswer": "Kinetic energy"
+    }
+]

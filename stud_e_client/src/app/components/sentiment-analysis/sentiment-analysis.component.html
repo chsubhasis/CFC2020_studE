@@ -1,0 +1,19 @@
+<!-- Mood Analysis -->
+<div class="card m-2">
+    <div class="card-header card-header-statistics">
+        Mood Analysis
+    </div>
+    <div class="card-body d-flex justify-content-center">
+        <div class="card m-2 bar-card">
+            <!-- bar chart -->
+            <canvas baseChart width="400" height="400" *ngIf="barChartData"
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [chartType]="barChartType">
+            </canvas>
+            <!-- bar chart -->
+        </div>        
+    </div>
+</div>
+<!-- Mood Analysis -->
