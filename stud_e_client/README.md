@@ -15,7 +15,6 @@ To check Node and Angular CLI version, use `ng --version` command.
 ## Clone this project from GIT
 
 `git clone (copy git url and paste)`
-
 <br>Run `npm i` to install node mudules
 
 ## Development server
