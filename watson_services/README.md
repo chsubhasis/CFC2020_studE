@@ -62,7 +62,8 @@ Corresponding Output:
 <b> Watson Assitant</b><br>
 Watson assistant with Watson Discovery is used for building the chat-bot. This is integrated with Slack an Facebook Messanger also.<br>
 Assitant link: https://web-chat.global.assistant.watson.cloud.ibm.com/preview.html?region=eu-gb&integrationID=e9126565-d03b-437d-9d6e-05a5234e8d0e&serviceInstanceID=0afa34f4-3756-4970-a741-93c1222c749c <br>
-Below searchs are working as of now. Among these, Newton definition is being retrieved from the Discovery service which is trained with a textbook chapter.<br>
+Select 'Physics' --> 'Energy' from the chatbot. Below searchs are working as of now. Among these, Newton definition is being retrieved from the Discovery service which is trained with a textbook chapter.<br>
 - What is Force?
 - What is Newton?
 - What is unit?
+- Bye (or Thanks)
