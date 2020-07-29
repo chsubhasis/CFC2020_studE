@@ -176,7 +176,8 @@ export class MeetComponent implements OnInit, OnDestroy {
     }
     this.connection.session = {
       audio: true,
-      video: true
+      data: true,
+      video: true,
     };
     this.connection.bandwidth = {
       audio: 50,  // 50 kbps
@@ -190,7 +191,10 @@ export class MeetComponent implements OnInit, OnDestroy {
       this.onstream(event);
     };
 
+    // event attched
     this.connection.onstreamended = (event) => { this.onstreamended(event); };
+    this.connection.onmessage = (event) => { this.onmessage(event); };
+
     // const predefinedRoomId = prompt('Please enter room-id', 'demo-room');
     this.connection.openOrJoin(this.roomName);
     // webRTC
@@ -309,6 +313,26 @@ export class MeetComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * onmessage -> handle message received from remote
+   * @param event event info
+   */
+  private onmessage(event) {
+    if (this.isCCShowing && event.data && event.data.text && event.data.remoteLanguageKey) {
+      console.log('remote data ---> ', event.data);
+      if (this.languageList[this.sourceLanguageKey].key === this.languageList[this.targetLanguageKey].key) {
+        this.convertedText.push(event.data.text);
+      } else {
+        this.complaintsService.convertText(event.data.text,
+           this.languageList[this.sourceLanguageKey].textTranslateKey, this.languageList[this.targetLanguageKey].textTranslateKey)
+        .subscribe((result: any) => {
+          this.convertedText.push(JSON.parse(result.msg).translations[0].translation);
+          this.changeDetector.detectChanges();
+        });
+      }
+    }
+  }
+
+  /**
    * On Mute
    * TODO - This will be implemented later
    */
@@ -348,6 +372,10 @@ export class MeetComponent implements OnInit, OnDestroy {
     } else {
       this.convertText(text);
     }
+    this.connection.send({
+      remoteLanguageKey: this.languageList[this.sourceLanguageKey].key,
+      text,
+    });
     this.changeDetector.detectChanges();
   }
 
