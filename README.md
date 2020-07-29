@@ -49,7 +49,7 @@ https://chattalk-client.eu-gb.cf.appdomain.cloud/
 https://github.com/chsubhasis/CFC2020_studE.git
 
 # Link to a demo video-
-< TODO >
+https://vimeo.com/442788530
 
 # Solution Roadmap-
 Refer to the solution architecture diagram to gauge the landscape of the current application. As part of this prototype development, below features are NOT implemented in this minimum viable product (MVP), and here is a plan to implement these feature. We assume a dedicated team of 4 (1 Team lead + 3 developers + 1 Tester) will be focussing on this to meet the timeline.<br>
