@@ -165,3 +165,33 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
+@media screen and (min-width: 350px) {
+  .home-banner-left{
+    position: relative;
+    top: 70px;
+  }
+  .rUser{
+    margin: 10px 10px !important;
+  }
+}
+
+@media only screen and (max-width: 986px) {
+  .text-center-button {
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+
+@media screen and (max-width: 372px) {  
+  .btn-prime {
+    padding: .5rem .5rem;
+  }
+  .btn-blue {
+    padding: .5rem .5rem;
+  }
+}

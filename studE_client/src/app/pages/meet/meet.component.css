@@ -20,14 +20,30 @@ input {
   padding: 5px 20px;
 }
 
-
 .local-video,
 .remore-video {
   margin-top: 60px;
 }
 
-.btn-white {
-  padding: 1rem 1.5rem !important;
+.btn-white-r {
+  padding: 1rem 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10rem;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  transition: transform 0.2s;
+}
+
+.btn-white-r:hover {
+  background-color: #ffffff;
+  color: #007bff;
+  -ms-transform: scale(1.1); /* IE 9 */
+  -webkit-transform: scale(1.1); /* Safari 3-8 */
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 .cc-drag-bounds {
@@ -97,7 +113,7 @@ input {
   font-size: 13px;
   border: 1px solid #eee;
 }
-.slack-image{
+.slack-image {
   width: 56px;
 }
 
@@ -175,7 +191,6 @@ ul:hover {
   margin-top: 18px;
 }
 
-
 a#menu-share:hover + ul {
   visibility: visible;
   /* animation: scale-in 0.5s; */
@@ -230,7 +245,6 @@ iframe {
   display: none;
 }
 
-
 /******************************* question section ***********************/
 .question-container {
   position: absolute;
@@ -258,7 +272,7 @@ iframe {
 .question-body {
   background-color: #fff;
 }
-.answer-container{
+.answer-container {
   flex-wrap: wrap;
 }
 .break-flex {
@@ -266,3 +280,19 @@ iframe {
   height: 0;
 }
 /******************************* question section End ***********************/
+
+@media screen and (max-width: 500px) {
+  .btn-white-r {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.7rem;
+    margin-top: 10px;
+  }
+
+  input {
+    padding: 5px;
+  }
+  .home-banner-right {
+    position: relative;
+    top: 32px;
+  }
+}
